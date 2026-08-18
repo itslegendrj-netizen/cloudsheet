@@ -1,25 +1,25 @@
 <footer class="pro-footer">
-  <div class="footer-content">
-    <div class="footer-socials">
-      <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-      <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-    </div>
-
-    <div class="footer-links">
-      <a href="#">Privacy Policy</a>
-      <span class="dot">•</span>
-      <a href="#">Terms of Service</a>
-      <span class="dot">•</span>
-      <a href="#">Support</a>
-    </div>
-
-    <div class="footer-bottom">
-      <p>&copy; 2026 <span>HealthPortal</span>. All rights reserved.</p>
-      <div class="secure-badge">
-        <i class="fa-solid fa-shield-halved"></i> 256-bit Encrypted
+  <div class="footer-body">
+    <div class="footer-top">
+      <div class="security-chip">
+        <i class="fa-solid fa-lock"></i>
+        <span>End-to-End Encrypted Sync</span>
       </div>
+      <div class="social-cluster">
+        <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="#">Security Protocol</a>
+      <span>/</span>
+      <a href="#">Privacy Notice</a>
+      <span>/</span>
+      <a href="#">Direct Support</a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 <strong>HealthLink Platform</strong>. Secure Field Services.</p>
     </div>
   </div>
 </footer>
@@ -27,94 +27,87 @@
 <style>
   .pro-footer {
     width: 100%;
-    max-width: 440px;
-    margin-top: 20px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    max-width: 480px;
+    margin-top: 22px;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    padding: 18px 20px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 18px;
+    padding: 18px 22px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
   }
-  .footer-content {
+  .footer-body {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 12px;
   }
-  .footer-socials {
+  .footer-top {
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
   }
-  .footer-socials a {
-    width: 32px;
-    height: 32px;
+  .security-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #4ade80;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .social-cluster {
+    display: flex;
+    gap: 6px;
+  }
+  .social-cluster a {
+    width: 28px;
+    height: 28px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     color: #94a3b8;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
+    font-size: 12px;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.2s;
   }
-  .footer-socials a:hover {
+  .social-cluster a:hover {
     background: #6366f1;
     color: #fff;
     border-color: #6366f1;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
   }
   .footer-links {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    font-size: 11px;
+    color: #64748b;
+    padding-top: 6px;
   }
   .footer-links a {
     color: #94a3b8;
-    font-size: 12px;
     text-decoration: none;
     transition: color 0.2s;
   }
   .footer-links a:hover {
     color: #f8fafc;
   }
-  .footer-links .dot {
-    color: rgba(255, 255, 255, 0.2);
-    font-size: 10px;
-  }
   .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding-top: 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
     font-size: 11px;
     color: #64748b;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 10px;
   }
-  .footer-bottom span {
-    color: #cbd5e1;
-    font-weight: 500;
-  }
-  .secure-badge {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    color: #4ade80;
-    font-size: 11px;
-    background: rgba(74, 222, 128, 0.08);
-    padding: 2px 7px;
-    border-radius: 12px;
-    border: 1px solid rgba(74, 222, 128, 0.2);
-  }
-  @media (max-width: 440px) {
-    .footer-bottom {
-      flex-direction: column;
-      gap: 6px;
-    }
+  .footer-bottom strong {
+    color: #e2e8f0;
   }
 </style>
