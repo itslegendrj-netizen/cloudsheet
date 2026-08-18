@@ -47,7 +47,7 @@
       overflow-x: hidden;
     }
 
-    /* Ambient Glow */
+    /* Ambient Background Glow */
     body::before, body::after {
       content: '';
       position: absolute;
@@ -232,10 +232,10 @@
 </head>
 <body>
 
-  <!-- Header Component Container -->
+  <!-- Header Component -->
   <div id="header-container"></div>
 
-  <!-- Form Component -->
+  <!-- Main Single Form -->
   <div class="form-container">
     <div class="form-header">
       <div class="icon-badge">
@@ -308,7 +308,7 @@
     <div id="statusAlert" class="status-alert"></div>
   </div>
 
-  <!-- Footer Component Container -->
+  <!-- Footer Component -->
   <div id="footer-container"></div>
 
   <script>
@@ -323,7 +323,7 @@
       .then(data => document.getElementById('footer-container').innerHTML = data)
       .catch(err => console.error('Footer Load Error:', err));
 
-    // 2. Apps Script Integration
+    // 2. Google Apps Script Web App URL
     const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
     const form = document.getElementById('sheetForm');
