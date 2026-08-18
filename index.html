@@ -3,103 +3,336 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>डेटा एंट्री फॉर्म</title>
+  <title>Smart Data Entry Portal</title>
+  
+  <!-- Modern Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <style>
+    :root {
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --input-bg: rgba(255, 255, 255, 0.04);
+      --input-border: rgba(255, 255, 255, 0.15);
+      --input-focus: #818cf8;
+      --success-bg: rgba(34, 197, 94, 0.15);
+      --success-text: #4ade80;
+      --error-bg: rgba(239, 68, 68, 0.15);
+      --error-text: #f87171;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f7f6;
+      background: var(--bg-gradient);
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      margin: 0;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
     }
-    .form-box {
-      background: #fff;
-      padding: 25px 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    /* Ambient Glow Effects */
+    body::before, body::after {
+      content: '';
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: 0;
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    body::before {
+      background: #4f46e5;
+      top: 10%;
+      left: 15%;
+    }
+    body::after {
+      background: #ec4899;
+      bottom: 10%;
+      right: 15%;
+    }
+
+    /* Glassmorphism Card */
+    .form-container {
+      position: relative;
+      z-index: 1;
       width: 100%;
-      max-width: 380px;
+      max-width: 440px;
+      background: var(--card-bg);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 36px 30px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
-    h2 {
-      margin-top: 0;
-      color: #333;
+
+    .form-header {
       text-align: center;
+      margin-bottom: 26px;
     }
-    label {
+
+    .form-header .icon-badge {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, var(--primary), #a855f7);
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #fff;
+      margin-bottom: 14px;
+      box-shadow: 0 8px 16px rgba(99, 102, 241, 0.35);
+    }
+
+    .form-header h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+
+    .form-header p {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    /* Input Groups */
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-group label {
       display: block;
-      margin-top: 12px;
-      margin-bottom: 4px;
-      font-weight: bold;
-      color: #555;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 7px;
     }
-    input, textarea {
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrapper i {
+      position: absolute;
+      left: 14px;
+      color: #64748b;
+      font-size: 15px;
+      transition: color 0.2s ease;
+    }
+
+    .input-wrapper input,
+    .input-wrapper textarea {
       width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 10px;
+      padding: 11px 14px 11px 40px;
+      color: var(--text-main);
       font-size: 14px;
+      outline: none;
+      transition: all 0.2s ease;
     }
-    button {
+
+    .input-wrapper textarea {
+      padding-top: 12px;
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .input-wrapper input::placeholder,
+    .input-wrapper textarea::placeholder {
+      color: #64748b;
+    }
+
+    .input-wrapper input:focus,
+    .input-wrapper textarea:focus {
+      border-color: var(--input-focus);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+
+    .input-wrapper input:focus + i,
+    .input-wrapper textarea:focus + i {
+      color: var(--input-focus);
+    }
+
+    /* Submit Button */
+    .btn-submit {
       width: 100%;
-      background: #28a745;
-      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: #fff;
       border: none;
-      padding: 12px;
-      margin-top: 18px;
-      border-radius: 4px;
-      font-size: 16px;
+      border-radius: 10px;
+      padding: 13px;
+      font-size: 15px;
+      font-weight: 600;
       cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
     }
-    button:disabled {
-      background: #888;
+
+    .btn-submit:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 24px -5px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-submit:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.65;
       cursor: not-allowed;
+      box-shadow: none;
     }
-    #status {
+
+    .spinner {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Feedback Alert */
+    .status-alert {
+      display: none;
+      margin-top: 18px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
       text-align: center;
-      margin-top: 15px;
-      font-weight: bold;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .status-alert.success {
+      display: block;
+      background: var(--success-bg);
+      color: var(--success-text);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+    }
+
+    .status-alert.error {
+      display: block;
+      background: var(--error-bg);
+      color: var(--error-text);
+      border: 1px solid rgba(248, 113, 113, 0.25);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-  <div class="form-box">
-    <h2>डेटा फॉर्म</h2>
+  <div class="form-container">
+    <div class="form-header">
+      <div class="icon-badge">
+        <i class="fa-solid fa-bolt"></i>
+      </div>
+      <h2>Data Entry Portal</h2>
+      <p>डेटा सीधे Google Sheets में सुरक्षित सेव होगा</p>
+    </div>
+
     <form id="sheetForm">
-      <label>नाम</label>
-      <input type="text" name="name" required placeholder="पूरा नाम दर्ज करें">
+      <div class="input-group">
+        <label>पूरा नाम</label>
+        <div class="input-wrapper">
+          <input type="text" name="name" required placeholder="उदा. Rahul Sharma">
+          <i class="fa-regular fa-user"></i>
+        </div>
+      </div>
 
-      <label>मोबाइल नंबर</label>
-      <input type="tel" name="phone" required placeholder="10 अंकों का नंबर">
+      <div class="input-group">
+        <label>मोबाइल नंबर</label>
+        <div class="input-wrapper">
+          <input type="tel" name="phone" pattern="[0-9]{10}" required placeholder="10 अंकों का नंबर">
+          <i class="fa-solid fa-phone"></i>
+        </div>
+      </div>
 
-      <label>ईमेल</label>
-      <input type="email" name="email" required placeholder="example@mail.com">
+      <div class="input-group">
+        <label>ईमेल आईडी</label>
+        <div class="input-wrapper">
+          <input type="email" name="email" required placeholder="name@example.com">
+          <i class="fa-regular fa-envelope"></i>
+        </div>
+      </div>
 
-      <label>विवरण / मैसेज</label>
-      <textarea name="message" rows="3" placeholder="यहाँ लिखें..."></textarea>
+      <div class="input-group">
+        <label>संदेश / विवरण</label>
+        <div class="input-wrapper">
+          <textarea name="message" rows="3" placeholder="यहाँ विवरण दर्ज करें..."></textarea>
+          <i class="fa-regular fa-comment-dots" style="top: 14px;"></i>
+        </div>
+      </div>
 
-      <button type="submit" id="submitBtn">सबमिट करें</button>
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <span id="btnText">सबमिट करें</span>
+        <div class="spinner" id="spinner"></div>
+      </button>
     </form>
-    <p id="status"></p>
+
+    <div id="statusAlert" class="status-alert"></div>
   </div>
 
   <script>
-    // Apps Script से मिलने वाले Web App URL को यहाँ पेस्ट करें
+    // अपना Apps Script Web App URL यहाँ डालें
     const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
     const form = document.getElementById('sheetForm');
-    const statusText = document.getElementById('status');
+    const statusAlert = document.getElementById('statusAlert');
     const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const spinner = document.getElementById('spinner');
 
     form.addEventListener('submit', e => {
       e.preventDefault();
       
+      // Loading State
       submitBtn.disabled = true;
-      statusText.style.color = '#007bff';
-      statusText.innerText = 'डेटा भेजा जा रहा है...';
+      btnText.innerText = 'सेव हो रहा है...';
+      spinner.style.display = 'block';
+      statusAlert.className = 'status-alert';
+      statusAlert.innerText = '';
 
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
@@ -110,16 +343,19 @@
       })
       .then(res => res.json())
       .then(response => {
-        statusText.style.color = 'green';
-        statusText.innerText = 'डेटा शीट में सफलतापूर्वक सेव हो गया!';
+        statusAlert.className = 'status-alert success';
+        statusAlert.innerHTML = '<i class="fa-regular fa-circle-check"></i> डेटा सफलतापूर्वक सेव हो गया!';
         form.reset();
-        submitBtn.disabled = false;
       })
       .catch(error => {
-        statusText.style.color = 'red';
-        statusText.innerText = 'डेटा सेव नहीं हुआ, दोबारा कोशिश करें।';
-        submitBtn.disabled = false;
+        statusAlert.className = 'status-alert error';
+        statusAlert.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> एरर! डेटा सेव नहीं हो सका।';
         console.error('Error:', error);
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        btnText.innerText = 'सबमिट करें';
+        spinner.style.display = 'none';
       });
     });
   </script>
