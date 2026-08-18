@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>डेटा एंट्री फॉर्म</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .form-box {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 380px;
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      font-weight: bold;
+      color: #555;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    button {
+      width: 100%;
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 12px;
+      margin-top: 18px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:disabled {
+      background: #888;
+      cursor: not-allowed;
+    }
+    #status {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-box">
+    <h2>डेटा फॉर्म</h2>
+    <form id="sheetForm">
+      <label>नाम</label>
+      <input type="text" name="name" required placeholder="पूरा नाम दर्ज करें">
+
+      <label>मोबाइल नंबर</label>
+      <input type="tel" name="phone" required placeholder="10 अंकों का नंबर">
+
+      <label>ईमेल</label>
+      <input type="email" name="email" required placeholder="example@mail.com">
+
+      <label>विवरण / मैसेज</label>
+      <textarea name="message" rows="3" placeholder="यहाँ लिखें..."></textarea>
+
+      <button type="submit" id="submitBtn">सबमिट करें</button>
+    </form>
+    <p id="status"></p>
+  </div>
+
+  <script>
+    // Apps Script से मिलने वाले Web App URL को यहाँ पेस्ट करें
+    const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+    const form = document.getElementById('sheetForm');
+    const statusText = document.getElementById('status');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      
+      submitBtn.disabled = true;
+      statusText.style.color = '#007bff';
+      statusText.innerText = 'डेटा भेजा जा रहा है...';
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(response => {
+        statusText.style.color = 'green';
+        statusText.innerText = 'डेटा शीट में सफलतापूर्वक सेव हो गया!';
+        form.reset();
+        submitBtn.disabled = false;
+      })
+      .catch(error => {
+        statusText.style.color = 'red';
+        statusText.innerText = 'डेटा सेव नहीं हुआ, दोबारा कोशिश करें।';
+        submitBtn.disabled = false;
+        console.error('Error:', error);
+      });
+    });
+  </script>
+
+</body>
+</html>
