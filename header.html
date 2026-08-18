@@ -1,96 +1,134 @@
 <header class="pro-header">
   <div class="header-container">
-    <div class="brand-logo">
-      <div class="logo-icon">
-        <i class="fa-solid fa-notes-medical"></i>
+    <div class="brand-wrapper">
+      <div class="logo-orb">
+        <i class="fa-solid fa-heart-pulse"></i>
       </div>
-      <div class="brand-text">
-        <h3>HealthPortal</h3>
-        <span>Beneficiary Hub 2026</span>
+      <div class="brand-details">
+        <h3>HealthLink <span>OS</span></h3>
+        <p><span class="live-dot"></span> 2026 Tele-Health Sync</p>
       </div>
     </div>
-    <nav class="nav-actions">
-      <a href="https://sheets.google.com" target="_blank" class="nav-btn">
-        <i class="fa-solid fa-table"></i> <span>Sheets</span>
+    <div class="header-badges">
+      <a href="https://sheets.google.com" target="_blank" class="glass-pill" title="Live Database">
+        <i class="fa-solid fa-database"></i> <span>Sheets</span>
       </a>
-      <a href="https://github.com" target="_blank" class="nav-btn accent" aria-label="GitHub">
+      <a href="https://github.com" target="_blank" class="icon-pill" title="Source Repo">
         <i class="fa-brands fa-github"></i>
       </a>
-    </nav>
+    </div>
   </div>
 </header>
 
 <style>
   .pro-header {
     width: 100%;
-    max-width: 440px;
-    margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
+    max-width: 480px;
+    margin-bottom: 22px;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
     padding: 14px 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
   .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  .brand-logo {
+  .brand-wrapper {
     display: flex;
     align-items: center;
     gap: 12px;
   }
-  .logo-icon {
-    width: 36px;
-    height: 36px;
-    background: linear-gradient(135deg, #6366f1, #a855f7);
-    border-radius: 10px;
+  .logo-orb {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6366f1, #d946ef);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: #ffffff;
+    font-size: 18px;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+  }
+  .brand-details h3 {
+    color: #ffffff;
     font-size: 16px;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
-  }
-  .brand-text h3 {
-    color: #f8fafc;
-    font-size: 15px;
     font-weight: 700;
-    line-height: 1.1;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
   }
-  .brand-text span {
+  .brand-details h3 span {
+    font-size: 11px;
+    font-weight: 600;
+    color: #818cf8;
+    background: rgba(99, 102, 241, 0.15);
+    padding: 2px 6px;
+    border-radius: 6px;
+    margin-left: 4px;
+  }
+  .brand-details p {
     color: #94a3b8;
     font-size: 11px;
-    font-weight: 500;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
-  .nav-actions {
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    background: #22c55e;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px #22c55e;
+  }
+  .header-badges {
     display: flex;
     gap: 8px;
   }
-  .nav-btn {
-    background: rgba(255, 255, 255, 0.06);
+  .glass-pill {
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: #e2e8f0;
-    padding: 7px 12px;
-    border-radius: 8px;
+    padding: 6px 12px;
+    border-radius: 10px;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
   }
-  .nav-btn:hover {
-    background: rgba(255, 255, 255, 0.12);
+  .glass-pill:hover {
+    background: rgba(99, 102, 241, 0.2);
     border-color: #818cf8;
     color: #fff;
+    transform: translateY(-1px);
   }
-  .nav-btn.accent:hover {
+  .icon-pill {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #cbd5e1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.25s ease;
+  }
+  .icon-pill:hover {
     background: #6366f1;
+    color: #fff;
     border-color: #6366f1;
+    transform: translateY(-1px);
   }
 </style>
