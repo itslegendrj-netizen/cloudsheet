@@ -2,18 +2,18 @@
   <div class="header-container">
     <div class="brand-wrapper">
       <div class="logo-orb">
-        <i class="fa-solid fa-heart-pulse"></i>
+        <i class="fa-solid fa-notes-medical"></i>
       </div>
       <div class="brand-details">
-        <h3>HealthLink <span>OS</span></h3>
-        <p><span class="live-dot"></span> 2026 Tele-Health Sync</p>
+        <h3>HealthLink <span class="brand-badge">PRO</span></h3>
+        <p><span class="live-dot"></span> 2026 Sync Gateway</p>
       </div>
     </div>
-    <div class="header-badges">
-      <a href="https://sheets.google.com" target="_blank" class="glass-pill" title="Live Database">
-        <i class="fa-solid fa-database"></i> <span>Sheets</span>
+    <div class="header-actions">
+      <a href="https://sheets.google.com" target="_blank" class="glass-pill" title="Live Google Sheet">
+        <i class="fa-solid fa-table-cells"></i> <span>Sheets</span>
       </a>
-      <a href="https://github.com" target="_blank" class="icon-pill" title="Source Repo">
+      <a href="https://github.com" target="_blank" class="icon-pill" title="GitHub Repository">
         <i class="fa-brands fa-github"></i>
       </a>
     </div>
@@ -23,15 +23,15 @@
 <style>
   .pro-header {
     width: 100%;
-    max-width: 480px;
-    margin-bottom: 22px;
-    background: rgba(15, 23, 42, 0.65);
+    max-width: 460px;
+    margin-bottom: 20px;
+    background: rgba(26, 17, 12, 0.65);
     backdrop-filter: blur(25px) saturate(180%);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 107, 0, 0.2);
     border-radius: 18px;
     padding: 14px 20px;
-    box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 140, 0, 0.2);
   }
   .header-container {
     display: flex;
@@ -47,13 +47,13 @@
     width: 40px;
     height: 40px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #6366f1, #d946ef);
+    background: linear-gradient(135deg, #ff6b00, #ff9500);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
     font-size: 18px;
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 0 18px rgba(255, 107, 0, 0.5);
   }
   .brand-details h3 {
     color: #ffffff;
@@ -62,17 +62,19 @@
     letter-spacing: -0.3px;
     line-height: 1.2;
   }
-  .brand-details h3 span {
-    font-size: 11px;
-    font-weight: 600;
-    color: #818cf8;
-    background: rgba(99, 102, 241, 0.15);
+  .brand-badge {
+    font-size: 10px;
+    font-weight: 800;
+    color: #ff9500;
+    background: rgba(255, 149, 0, 0.15);
+    border: 1px solid rgba(255, 149, 0, 0.3);
     padding: 2px 6px;
     border-radius: 6px;
     margin-left: 4px;
+    text-transform: uppercase;
   }
   .brand-details p {
-    color: #94a3b8;
+    color: #a8a29e;
     font-size: 11px;
     margin-top: 2px;
     display: flex;
@@ -82,19 +84,19 @@
   .live-dot {
     width: 6px;
     height: 6px;
-    background: #22c55e;
+    background: #ff6b00;
     border-radius: 50%;
     display: inline-block;
-    box-shadow: 0 0 8px #22c55e;
+    box-shadow: 0 0 8px #ff6b00;
   }
-  .header-badges {
+  .header-actions {
     display: flex;
     gap: 8px;
   }
   .glass-pill {
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #e2e8f0;
+    border: 1px solid rgba(255, 140, 0, 0.25);
+    color: #f5f5f4;
     padding: 6px 12px;
     border-radius: 10px;
     font-size: 12px;
@@ -106,8 +108,8 @@
     transition: all 0.25s ease;
   }
   .glass-pill:hover {
-    background: rgba(99, 102, 241, 0.2);
-    border-color: #818cf8;
+    background: rgba(255, 107, 0, 0.2);
+    border-color: #ff6b00;
     color: #fff;
     transform: translateY(-1px);
   }
@@ -116,8 +118,8 @@
     height: 32px;
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #d6d3d1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -126,9 +128,9 @@
     transition: all 0.25s ease;
   }
   .icon-pill:hover {
-    background: #6366f1;
+    background: #ff6b00;
     color: #fff;
-    border-color: #6366f1;
+    border-color: #ff6b00;
     transform: translateY(-1px);
   }
 </style>
