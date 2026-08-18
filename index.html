@@ -7,102 +7,110 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     :root {
       --primary: #6366f1;
-      --primary-hover: #4f46e5;
-      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
-      --card-bg: rgba(255, 255, 255, 0.05);
-      --card-border: rgba(255, 255, 255, 0.12);
+      --primary-glow: rgba(99, 102, 241, 0.45);
+      --accent: #ec4899;
+      --bg-dark: #090d16;
+      --surface-glass: rgba(15, 23, 42, 0.72);
+      --border-glass: rgba(255, 255, 255, 0.1);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --input-bg: rgba(255, 255, 255, 0.04);
-      --input-border: rgba(255, 255, 255, 0.15);
-      --input-focus: #818cf8;
-      --success-bg: rgba(34, 197, 94, 0.15);
-      --success-text: #4ade80;
-      --error-bg: rgba(239, 68, 68, 0.15);
-      --error-text: #f87171;
+      --input-bg: rgba(2, 6, 23, 0.5);
+      --input-focus-border: #818cf8;
+      --success: #10b981;
+      --error: #f43f5e;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     body {
-      background: var(--bg-gradient);
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.15) 0px, transparent 50%);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 25px 15px;
+      padding: 30px 16px;
       position: relative;
       overflow-x: hidden;
     }
 
-    /* Ambient Background Glow */
-    body::before, body::after {
-      content: '';
+    /* Interactive Background Orbs */
+    .orb {
       position: absolute;
-      width: 320px;
-      height: 320px;
       border-radius: 50%;
-      filter: blur(100px);
+      filter: blur(110px);
+      opacity: 0.35;
       z-index: 0;
-      opacity: 0.4;
       pointer-events: none;
+      animation: float 10s ease-in-out infinite alternate;
     }
-    body::before { background: #4f46e5; top: 5%; left: 10%; }
-    body::after { background: #ec4899; bottom: 5%; right: 10%; }
+    .orb-1 { width: 380px; height: 380px; background: #4f46e5; top: -50px; left: -100px; }
+    .orb-2 { width: 320px; height: 320px; background: #db2777; bottom: -50px; right: -80px; animation-delay: -5s; }
+
+    @keyframes float {
+      0% { transform: translateY(0px) scale(1); }
+      100% { transform: translateY(30px) scale(1.08); }
+    }
 
     #header-container, #footer-container {
       width: 100%;
-      max-width: 440px;
+      max-width: 480px;
       z-index: 1;
     }
 
+    /* Main Container */
     .form-container {
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 440px;
-      background: var(--card-bg);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 32px 26px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      max-width: 480px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 34px 28px;
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     }
 
     .form-header {
       text-align: center;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
-    .form-header .icon-badge {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--primary), #a855f7);
-      border-radius: 12px;
+    .header-badge {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      color: #fff;
+      gap: 6px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       margin-bottom: 12px;
-      box-shadow: 0 6px 14px rgba(99, 102, 241, 0.35);
     }
     .form-header h2 {
-      font-size: 21px;
-      font-weight: 700;
+      font-size: 24px;
+      font-weight: 800;
       color: var(--text-main);
+      letter-spacing: -0.5px;
     }
     .form-header p {
       color: var(--text-muted);
@@ -110,39 +118,43 @@
       margin-top: 4px;
     }
 
+    /* Field Styles */
     .input-group {
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .input-group label {
       display: block;
       font-size: 12px;
-      font-weight: 500;
-      color: var(--text-muted);
-      margin-bottom: 6px;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 7px;
+      letter-spacing: 0.2px;
     }
     .input-wrapper {
       position: relative;
       display: flex;
       align-items: center;
     }
-    .input-wrapper i {
+    .input-wrapper i.lead-icon {
       position: absolute;
-      left: 14px;
+      left: 15px;
       color: #64748b;
       font-size: 14px;
       pointer-events: none;
+      transition: color 0.2s ease;
     }
     .input-wrapper input,
     .input-wrapper select {
       width: 100%;
       background: var(--input-bg);
-      border: 1px solid var(--input-border);
-      border-radius: 10px;
-      padding: 11px 14px 11px 38px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px 14px 12px 42px;
       color: var(--text-main);
       font-size: 14px;
+      font-weight: 500;
       outline: none;
-      transition: all 0.2s ease;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       appearance: none;
       -webkit-appearance: none;
     }
@@ -150,99 +162,128 @@
       cursor: pointer;
     }
     .input-wrapper select option {
-      background: #1e1b4b;
+      background: #0f172a;
       color: #fff;
     }
     .input-wrapper .select-arrow {
       position: absolute;
-      right: 14px;
-      left: auto;
+      right: 15px;
       color: #64748b;
       font-size: 12px;
       pointer-events: none;
+      transition: color 0.2s;
     }
     .input-wrapper input::placeholder {
-      color: #64748b;
+      color: #475569;
     }
     .input-wrapper input:focus,
     .input-wrapper select:focus {
-      border-color: var(--input-focus);
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+      border-color: var(--input-focus-border);
+      background: rgba(15, 23, 42, 0.8);
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+    }
+    .input-wrapper input:focus ~ i.lead-icon,
+    .input-wrapper select:focus ~ i.lead-icon {
+      color: #818cf8;
     }
 
+    /* Submit Button */
     .btn-submit {
       width: 100%;
-      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-      color: #fff;
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      color: #ffffff;
       border: none;
-      border-radius: 10px;
-      padding: 13px;
+      border-radius: 12px;
+      padding: 14px;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 10px;
-      margin-top: 22px;
+      margin-top: 24px;
       transition: all 0.25s ease;
-      box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+      box-shadow: 0 10px 25px -4px var(--primary-glow);
+      position: relative;
+      overflow: hidden;
     }
     .btn-submit:hover:not(:disabled) {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 24px -5px rgba(99, 102, 241, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px -4px rgba(99, 102, 241, 0.6);
+      filter: brightness(1.08);
+    }
+    .btn-submit:active:not(:disabled) {
+      transform: translateY(0);
     }
     .btn-submit:disabled {
       opacity: 0.65;
       cursor: not-allowed;
+      box-shadow: none;
     }
+
     .spinner {
       display: none;
-      width: 15px;
-      height: 15px;
+      width: 16px;
+      height: 16px;
       border: 2px solid rgba(255, 255, 255, 0.3);
       border-top-color: #fff;
       border-radius: 50%;
-      animation: spin 0.7s linear infinite;
+      animation: spin 0.65s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* Floating Alert Component */
     .status-alert {
       display: none;
-      margin-top: 15px;
-      padding: 10px 14px;
-      border-radius: 8px;
+      margin-top: 18px;
+      padding: 12px 16px;
+      border-radius: 12px;
       font-size: 13px;
+      font-weight: 600;
       text-align: center;
+      animation: slideUp 0.3s ease;
     }
     .status-alert.success {
-      display: block;
-      background: var(--success-bg);
-      color: var(--success-text);
-      border: 1px solid rgba(74, 222, 128, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      border: 1px solid rgba(52, 211, 153, 0.25);
     }
     .status-alert.error {
-      display: block;
-      background: var(--error-bg);
-      color: var(--error-text);
-      border: 1px solid rgba(248, 113, 113, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(244, 63, 94, 0.12);
+      color: #fb7185;
+      border: 1px solid rgba(251, 113, 133, 0.25);
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header Component -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- Dynamic Header Injection -->
   <div id="header-container"></div>
 
-  <!-- Main Single Form -->
+  <!-- Clean Single Form Module -->
   <div class="form-container">
     <div class="form-header">
-      <div class="icon-badge">
-        <i class="fa-solid fa-hospital-user"></i>
+      <div class="header-badge">
+        <i class="fa-solid fa-sparkles"></i> Field Tele-Entry
       </div>
       <h2>Beneficiary Entry</h2>
-      <p>Fill out the details below</p>
+      <p>Fill out the verified records below</p>
     </div>
 
     <form id="sheetForm">
@@ -250,8 +291,8 @@
       <div class="input-group">
         <label>Full Name</label>
         <div class="input-wrapper">
-          <input type="text" name="name" required placeholder="e.g. Rahul Sharma">
-          <i class="fa-regular fa-user"></i>
+          <input type="text" name="name" required placeholder="e.g. Rahul Sharma" autocomplete="off">
+          <i class="fa-regular fa-user lead-icon"></i>
         </div>
       </div>
 
@@ -259,8 +300,8 @@
       <div class="input-group">
         <label>Mobile Number</label>
         <div class="input-wrapper">
-          <input type="tel" name="phone" pattern="[0-9]{10}" required placeholder="10-digit mobile number">
-          <i class="fa-solid fa-phone"></i>
+          <input type="tel" name="phone" pattern="[0-9]{10}" required placeholder="10-digit mobile number" autocomplete="off">
+          <i class="fa-solid fa-phone lead-icon"></i>
         </div>
       </div>
 
@@ -268,8 +309,8 @@
       <div class="input-group">
         <label>Health Card ID</label>
         <div class="input-wrapper">
-          <input type="text" name="healthCardId" required placeholder="e.g. HC-98765432">
-          <i class="fa-solid fa-id-card"></i>
+          <input type="text" name="healthCardId" required placeholder="e.g. HC-98765432" autocomplete="off">
+          <i class="fa-solid fa-id-card lead-icon"></i>
         </div>
       </div>
 
@@ -277,14 +318,14 @@
       <div class="input-group">
         <label>Health Centre Name</label>
         <div class="input-wrapper">
-          <input type="text" name="healthCentre" required placeholder="e.g. Primary Health Centre">
-          <i class="fa-solid fa-hospital"></i>
+          <input type="text" name="healthCentre" required placeholder="e.g. Primary Health Centre" autocomplete="off">
+          <i class="fa-solid fa-hospital lead-icon"></i>
         </div>
       </div>
 
-      <!-- ASHA Name Dropdown -->
+      <!-- ASHA Dropdown -->
       <div class="input-group">
-        <label>ASHA Name</label>
+        <label>ASHA Worker</label>
         <div class="input-wrapper">
           <select name="ashaName" required>
             <option value="" disabled selected>Select ASHA Worker</option>
@@ -294,13 +335,13 @@
             <option value="Sumita Kisku">Sumita Kisku</option>
             <option value="Jhilik Mondal">Jhilik Mondal</option>
           </select>
-          <i class="fa-solid fa-user-nurse"></i>
+          <i class="fa-solid fa-user-nurse lead-icon"></i>
           <i class="fa-solid fa-chevron-down select-arrow"></i>
         </div>
       </div>
 
       <button type="submit" class="btn-submit" id="submitBtn">
-        <span id="btnText">Submit Data</span>
+        <span id="btnText">Save & Submit Record</span>
         <div class="spinner" id="spinner"></div>
       </button>
     </form>
@@ -308,22 +349,22 @@
     <div id="statusAlert" class="status-alert"></div>
   </div>
 
-  <!-- Footer Component -->
+  <!-- Dynamic Footer Injection -->
   <div id="footer-container"></div>
 
   <script>
-    // 1. Fetch Header & Footer
+    // 1. Asynchronous Injection of Components
     fetch('header.html')
       .then(res => res.text())
       .then(data => document.getElementById('header-container').innerHTML = data)
-      .catch(err => console.error('Header Load Error:', err));
+      .catch(err => console.error('Header Load Failed:', err));
 
     fetch('footer.html')
       .then(res => res.text())
       .then(data => document.getElementById('footer-container').innerHTML = data)
-      .catch(err => console.error('Footer Load Error:', err));
+      .catch(err => console.error('Footer Load Failed:', err));
 
-    // 2. Google Apps Script Web App URL
+    // 2. Form Submission Handler
     const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
     const form = document.getElementById('sheetForm');
@@ -336,7 +377,7 @@
       e.preventDefault();
       
       submitBtn.disabled = true;
-      btnText.innerText = 'Submitting...';
+      btnText.innerText = 'Syncing Record...';
       spinner.style.display = 'block';
       statusAlert.className = 'status-alert';
       statusAlert.innerText = '';
@@ -351,17 +392,17 @@
       .then(res => res.json())
       .then(response => {
         statusAlert.className = 'status-alert success';
-        statusAlert.innerHTML = '<i class="fa-regular fa-circle-check"></i> Data saved successfully!';
+        statusAlert.innerHTML = '<i class="fa-solid fa-circle-check"></i> Beneficiary record saved successfully!';
         form.reset();
       })
       .catch(error => {
         statusAlert.className = 'status-alert error';
-        statusAlert.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error! Failed to submit data.';
-        console.error('Error:', error);
+        statusAlert.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Transmission failed. Check internet.';
+        console.error('Submission Error:', error);
       })
       .finally(() => {
         submitBtn.disabled = false;
-        btnText.innerText = 'Submit Data';
+        btnText.innerText = 'Save & Submit Record';
         spinner.style.display = 'none';
       });
     });
