@@ -12,16 +12,16 @@
 
   <style>
     :root {
-      --primary: #6366f1;
-      --primary-glow: rgba(99, 102, 241, 0.45);
-      --accent: #ec4899;
-      --bg-dark: #090d16;
-      --surface-glass: rgba(15, 23, 42, 0.72);
-      --border-glass: rgba(255, 255, 255, 0.1);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --input-bg: rgba(2, 6, 23, 0.5);
-      --input-focus-border: #818cf8;
+      --primary-orange: #ff6b00;
+      --primary-amber: #ff9500;
+      --orange-glow: rgba(255, 107, 0, 0.45);
+      --bg-dark: #0a0604;
+      --surface-glass: rgba(24, 15, 11, 0.75);
+      --border-glass: rgba(255, 107, 0, 0.2);
+      --text-main: #fbf5f2;
+      --text-muted: #a89f91;
+      --input-bg: rgba(12, 8, 6, 0.6);
+      --input-focus-border: #ff7d1a;
       --success: #10b981;
       --error: #f43f5e;
     }
@@ -36,8 +36,8 @@
     body {
       background-color: var(--bg-dark);
       background-image: 
-        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.15) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(255, 107, 0, 0.22) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(255, 149, 0, 0.15) 0px, transparent 50%);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -48,43 +48,43 @@
       overflow-x: hidden;
     }
 
-    /* Interactive Background Orbs */
+    /* Ambient Glowing Orbs */
     .orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(110px);
-      opacity: 0.35;
+      filter: blur(120px);
+      opacity: 0.32;
       z-index: 0;
       pointer-events: none;
       animation: float 10s ease-in-out infinite alternate;
     }
-    .orb-1 { width: 380px; height: 380px; background: #4f46e5; top: -50px; left: -100px; }
-    .orb-2 { width: 320px; height: 320px; background: #db2777; bottom: -50px; right: -80px; animation-delay: -5s; }
+    .orb-1 { width: 400px; height: 400px; background: #ff5500; top: -60px; left: -100px; }
+    .orb-2 { width: 340px; height: 340px; background: #ffaa00; bottom: -60px; right: -80px; animation-delay: -5s; }
 
     @keyframes float {
       0% { transform: translateY(0px) scale(1); }
-      100% { transform: translateY(30px) scale(1.08); }
+      100% { transform: translateY(28px) scale(1.06); }
     }
 
     #header-container, #footer-container {
       width: 100%;
-      max-width: 480px;
+      max-width: 460px;
       z-index: 1;
     }
 
-    /* Main Container */
+    /* Main Card */
     .form-container {
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 480px;
+      max-width: 460px;
       background: var(--surface-glass);
       backdrop-filter: blur(30px) saturate(180%);
       -webkit-backdrop-filter: blur(30px) saturate(180%);
       border: 1px solid var(--border-glass);
       border-radius: 24px;
       padding: 34px 28px;
-      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 140, 0, 0.2);
     }
 
     .form-header {
@@ -95,9 +95,9 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(99, 102, 241, 0.12);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      color: #a5b4fc;
+      background: rgba(255, 107, 0, 0.12);
+      border: 1px solid rgba(255, 107, 0, 0.3);
+      color: #ff9500;
       padding: 4px 12px;
       border-radius: 20px;
       font-size: 11px;
@@ -118,17 +118,24 @@
       margin-top: 4px;
     }
 
-    /* Field Styles */
+    /* Input Fields */
     .input-group {
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     .input-group label {
-      display: block;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-size: 12px;
       font-weight: 600;
-      color: #cbd5e1;
+      color: #e7e0d8;
       margin-bottom: 7px;
       letter-spacing: 0.2px;
+    }
+    .input-group label span.hint {
+      font-size: 10px;
+      color: #ff9500;
+      font-weight: 500;
     }
     .input-wrapper {
       position: relative;
@@ -138,7 +145,7 @@
     .input-wrapper i.lead-icon {
       position: absolute;
       left: 15px;
-      color: #64748b;
+      color: #78716c;
       font-size: 14px;
       pointer-events: none;
       transition: color 0.2s ease;
@@ -147,7 +154,7 @@
     .input-wrapper select {
       width: 100%;
       background: var(--input-bg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 107, 0, 0.18);
       border-radius: 12px;
       padding: 12px 14px 12px 42px;
       color: var(--text-main);
@@ -162,35 +169,35 @@
       cursor: pointer;
     }
     .input-wrapper select option {
-      background: #0f172a;
+      background: #1c130e;
       color: #fff;
     }
     .input-wrapper .select-arrow {
       position: absolute;
       right: 15px;
-      color: #64748b;
+      color: #78716c;
       font-size: 12px;
       pointer-events: none;
       transition: color 0.2s;
     }
     .input-wrapper input::placeholder {
-      color: #475569;
+      color: #57534e;
     }
     .input-wrapper input:focus,
     .input-wrapper select:focus {
       border-color: var(--input-focus-border);
-      background: rgba(15, 23, 42, 0.8);
-      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+      background: rgba(20, 12, 8, 0.9);
+      box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.2);
     }
     .input-wrapper input:focus ~ i.lead-icon,
     .input-wrapper select:focus ~ i.lead-icon {
-      color: #818cf8;
+      color: #ff9500;
     }
 
     /* Submit Button */
     .btn-submit {
       width: 100%;
-      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      background: linear-gradient(135deg, #ff6b00 0%, #e65100 100%);
       color: #ffffff;
       border: none;
       border-radius: 12px;
@@ -204,14 +211,12 @@
       gap: 10px;
       margin-top: 24px;
       transition: all 0.25s ease;
-      box-shadow: 0 10px 25px -4px var(--primary-glow);
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 10px 25px -4px var(--orange-glow);
     }
     .btn-submit:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 15px 30px -4px rgba(99, 102, 241, 0.6);
-      filter: brightness(1.08);
+      box-shadow: 0 15px 30px -4px rgba(255, 107, 0, 0.6);
+      filter: brightness(1.1);
     }
     .btn-submit:active:not(:disabled) {
       transform: translateY(0);
@@ -233,7 +238,7 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Floating Alert Component */
+    /* Alert Banner */
     .status-alert {
       display: none;
       margin-top: 18px;
@@ -273,17 +278,17 @@
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
 
-  <!-- Dynamic Header Injection -->
+  <!-- Header Injection -->
   <div id="header-container"></div>
 
-  <!-- Clean Single Form Module -->
+  <!-- Form Module -->
   <div class="form-container">
     <div class="form-header">
       <div class="header-badge">
-        <i class="fa-solid fa-sparkles"></i> Field Tele-Entry
+        <i class="fa-solid fa-bolt"></i> Fast Field Sync
       </div>
       <h2>Beneficiary Entry</h2>
-      <p>Fill out the verified records below</p>
+      <p>Enter and verify beneficiary records</p>
     </div>
 
     <form id="sheetForm">
@@ -296,11 +301,24 @@
         </div>
       </div>
 
-      <!-- Mobile Number -->
+      <!-- Mobile Number (Strict 10 Digits Only) -->
       <div class="input-group">
-        <label>Mobile Number</label>
+        <label>Mobile Number <span class="hint">(Exact 10 digits)</span></label>
         <div class="input-wrapper">
-          <input type="tel" name="phone" pattern="[0-9]{10}" required placeholder="10-digit mobile number" autocomplete="off">
+          <input 
+            type="tel" 
+            id="phoneInput"
+            name="phone" 
+            inputmode="numeric"
+            minlength="10" 
+            maxlength="10" 
+            pattern="[0-9]{10}" 
+            title="Please enter exactly 10 numeric digits"
+            required 
+            placeholder="10-digit mobile number" 
+            autocomplete="off"
+            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);"
+          >
           <i class="fa-solid fa-phone lead-icon"></i>
         </div>
       </div>
@@ -329,12 +347,12 @@
         <div class="input-wrapper">
           <select name="ashaName" required>
             <option value="" disabled selected>Select ASHA Worker</option>
-            <option value="Anita Ray Mahato">Anita Ray Mahato</option>
             <option value="Bijay Laxmi Pasi">Bijay Laxmi Pasi</option>
-            <option value="Jhilik Mondal">Jhilik Mondal</option>
+            <option value="Anita Ray Mahato">Anita Ray Mahato</option>
             <option value="Sharmila Tudu">Sharmila Tudu</option>
             <option value="Sumita Kisku">Sumita Kisku</option>
-            </select>
+            <option value="Jhilik Mondal">Jhilik Mondal</option>
+          </select>
           <i class="fa-solid fa-user-nurse lead-icon"></i>
           <i class="fa-solid fa-chevron-down select-arrow"></i>
         </div>
@@ -349,22 +367,22 @@
     <div id="statusAlert" class="status-alert"></div>
   </div>
 
-  <!-- Dynamic Footer Injection -->
+  <!-- Footer Injection -->
   <div id="footer-container"></div>
 
   <script>
-    // 1. Asynchronous Injection of Components
+    // 1. Asynchronous Load of Header & Footer
     fetch('header.html')
       .then(res => res.text())
       .then(data => document.getElementById('header-container').innerHTML = data)
-      .catch(err => console.error('Header Load Failed:', err));
+      .catch(err => console.error('Header Load Error:', err));
 
     fetch('footer.html')
       .then(res => res.text())
       .then(data => document.getElementById('footer-container').innerHTML = data)
-      .catch(err => console.error('Footer Load Failed:', err));
+      .catch(err => console.error('Footer Load Error:', err));
 
-    // 2. Form Submission Handler
+    // 2. Apps Script Integration
     const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
     const form = document.getElementById('sheetForm');
@@ -372,9 +390,18 @@
     const submitBtn = document.getElementById('submitBtn');
     const btnText = document.getElementById('btnText');
     const spinner = document.getElementById('spinner');
+    const phoneInput = document.getElementById('phoneInput');
 
     form.addEventListener('submit', e => {
       e.preventDefault();
+
+      // Mobile Number Strict Length Verification
+      if (phoneInput.value.length !== 10) {
+        statusAlert.className = 'status-alert error';
+        statusAlert.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Mobile number must be exactly 10 digits.';
+        phoneInput.focus();
+        return;
+      }
       
       submitBtn.disabled = true;
       btnText.innerText = 'Syncing Record...';
@@ -397,8 +424,8 @@
       })
       .catch(error => {
         statusAlert.className = 'status-alert error';
-        statusAlert.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Transmission failed. Check internet.';
-        console.error('Submission Error:', error);
+        statusAlert.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Sync failed. Please check internet connection.';
+        console.error('Error:', error);
       })
       .finally(() => {
         submitBtn.disabled = false;
