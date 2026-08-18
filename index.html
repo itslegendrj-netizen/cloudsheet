@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Data Entry Portal</title>
+  <title>Health Beneficiary Portal</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +47,7 @@
       overflow-x: hidden;
     }
 
-    /* Ambient Glow */
+    /* Ambient Background Glow */
     body::before, body::after {
       content: '';
       position: absolute;
@@ -62,7 +62,6 @@
     body::before { background: #4f46e5; top: 5%; left: 10%; }
     body::after { background: #ec4899; bottom: 5%; right: 10%; }
 
-    /* Main Container */
     #header-container, #footer-container {
       width: 100%;
       max-width: 440px;
@@ -131,30 +130,42 @@
       left: 14px;
       color: #64748b;
       font-size: 14px;
+      pointer-events: none;
     }
     .input-wrapper input,
-    .input-wrapper textarea {
+    .input-wrapper select {
       width: 100%;
       background: var(--input-bg);
       border: 1px solid var(--input-border);
       border-radius: 10px;
-      padding: 10px 14px 10px 38px;
+      padding: 11px 14px 11px 38px;
       color: var(--text-main);
       font-size: 14px;
       outline: none;
       transition: all 0.2s ease;
+      appearance: none;
+      -webkit-appearance: none;
     }
-    .input-wrapper textarea {
-      padding-top: 10px;
-      resize: vertical;
-      min-height: 75px;
+    .input-wrapper select {
+      cursor: pointer;
     }
-    .input-wrapper input::placeholder,
-    .input-wrapper textarea::placeholder {
+    .input-wrapper select option {
+      background: #1e1b4b;
+      color: #fff;
+    }
+    .input-wrapper .select-arrow {
+      position: absolute;
+      right: 14px;
+      left: auto;
+      color: #64748b;
+      font-size: 12px;
+      pointer-events: none;
+    }
+    .input-wrapper input::placeholder {
       color: #64748b;
     }
     .input-wrapper input:focus,
-    .input-wrapper textarea:focus {
+    .input-wrapper select:focus {
       border-color: var(--input-focus);
       background: rgba(255, 255, 255, 0.08);
       box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
@@ -166,7 +177,7 @@
       color: #fff;
       border: none;
       border-radius: 10px;
-      padding: 12px;
+      padding: 13px;
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
@@ -174,7 +185,7 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
-      margin-top: 20px;
+      margin-top: 22px;
       transition: all 0.25s ease;
       box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
     }
@@ -228,47 +239,68 @@
   <div class="form-container">
     <div class="form-header">
       <div class="icon-badge">
-        <i class="fa-solid fa-file-lines"></i>
+        <i class="fa-solid fa-notes-medical"></i>
       </div>
-      <h2>डेटा एंट्री पोर्टल</h2>
-      <p>Google Sheets ऑटोमेशन</p>
+      <h2>Health Entry Portal</h2>
+      <p>Enter Beneficiary Details</p>
     </div>
 
     <form id="sheetForm">
+      <!-- Full Name -->
       <div class="input-group">
-        <label>पूरा नाम</label>
+        <label>Full Name</label>
         <div class="input-wrapper">
-          <input type="text" name="name" required placeholder="उदा. Rahul Sharma">
+          <input type="text" name="name" required placeholder="e.g. Rahul Sharma">
           <i class="fa-regular fa-user"></i>
         </div>
       </div>
 
+      <!-- Mobile Number -->
       <div class="input-group">
-        <label>मोबाइल नंबर</label>
+        <label>Mobile Number</label>
         <div class="input-wrapper">
-          <input type="tel" name="phone" pattern="[0-9]{10}" required placeholder="10 अंकों का नंबर">
+          <input type="tel" name="phone" pattern="[0-9]{10}" required placeholder="10-digit mobile number">
           <i class="fa-solid fa-phone"></i>
         </div>
       </div>
 
+      <!-- Health Card ID -->
       <div class="input-group">
-        <label>ईमेल आईडी</label>
+        <label>Health Card ID</label>
         <div class="input-wrapper">
-          <input type="email" name="email" required placeholder="name@example.com">
-          <i class="fa-regular fa-envelope"></i>
+          <input type="text" name="healthCardId" required placeholder="e.g. HC-98765432">
+          <i class="fa-solid fa-id-card"></i>
         </div>
       </div>
 
+      <!-- Health Centre Name -->
       <div class="input-group">
-        <label>विवरण / संदेश</label>
+        <label>Health Centre Name</label>
         <div class="input-wrapper">
-          <textarea name="message" rows="3" placeholder="यहाँ विवरण दर्ज करें..."></textarea>
-          <i class="fa-regular fa-comment-dots" style="top: 13px;"></i>
+          <input type="text" name="healthCentre" required placeholder="e.g. Primary Health Centre">
+          <i class="fa-solid fa-hospital"></i>
+        </div>
+      </div>
+
+      <!-- ASHA Name Dropdown -->
+      <div class="input-group">
+        <label>ASHA Name</label>
+        <div class="input-wrapper">
+          <select name="ashaName" required>
+            <option value="" disabled selected>Select ASHA Worker</option>
+            <option value="Bijay Laxmi Pasi">Bijay Laxmi Pasi</option>
+            <option value="Anita Ray Mahato">Anita Ray Mahato</option>
+            <option value="Sharmila Tudu">Sharmila Tudu</option>
+            <option value="Sumita Kisku">Sumita Kisku</option>
+            <option value="Jhilik Mondal">Jhilik Mondal</option>
+          </select>
+          <i class="fa-solid fa-user-nurse"></i>
+          <i class="fa-solid fa-chevron-down select-arrow"></i>
         </div>
       </div>
 
       <button type="submit" class="btn-submit" id="submitBtn">
-        <span id="btnText">सबमिट करें</span>
+        <span id="btnText">Submit Data</span>
         <div class="spinner" id="spinner"></div>
       </button>
     </form>
@@ -280,7 +312,7 @@
   <div id="footer-container"></div>
 
   <script>
-    // 1. Header और Footer को लोड करने का कोड
+    // 1. Fetch Header & Footer
     fetch('header.html')
       .then(res => res.text())
       .then(data => document.getElementById('header-container').innerHTML = data)
@@ -291,7 +323,7 @@
       .then(data => document.getElementById('footer-container').innerHTML = data)
       .catch(err => console.error('Footer Load Error:', err));
 
-    // 2. Google Sheet Submit Logic
+    // 2. Apps Script Integration
     const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
     const form = document.getElementById('sheetForm');
@@ -304,7 +336,7 @@
       e.preventDefault();
       
       submitBtn.disabled = true;
-      btnText.innerText = 'सेव हो रहा है...';
+      btnText.innerText = 'Submitting...';
       spinner.style.display = 'block';
       statusAlert.className = 'status-alert';
       statusAlert.innerText = '';
@@ -319,17 +351,17 @@
       .then(res => res.json())
       .then(response => {
         statusAlert.className = 'status-alert success';
-        statusAlert.innerHTML = '<i class="fa-regular fa-circle-check"></i> डेटा सफलतापूर्वक सेव हो गया!';
+        statusAlert.innerHTML = '<i class="fa-regular fa-circle-check"></i> Data saved successfully!';
         form.reset();
       })
       .catch(error => {
         statusAlert.className = 'status-alert error';
-        statusAlert.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> एरर! डेटा सेव नहीं हो सका।';
+        statusAlert.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error! Failed to submit data.';
         console.error('Error:', error);
       })
       .finally(() => {
         submitBtn.disabled = false;
-        btnText.innerText = 'सबमिट करें';
+        btnText.innerText = 'Submit Data';
         spinner.style.display = 'none';
       });
     });
